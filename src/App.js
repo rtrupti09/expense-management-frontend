@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchExpenses } from './slices/expensesSlice';
+import ExpenseList from './components/ExpenseList';
+import './index.css';
 
 function App() {
+  const dispatch = useDispatch();
+  const { items, loading, error } = useSelector((state) => state.expenses);
+
+  useEffect(() => {
+    dispatch(fetchExpenses());
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen bg-gray-100 p-8">
+      <h1 className="text-4xl font-poppins font-bold text-center mb-20">Expense Management System</h1>
+      {loading && <p>Loading expenses...</p>}
+      {error && <p>Error: {error}</p>}
+      <ExpenseList expenses={items} />
     </div>
   );
 }
