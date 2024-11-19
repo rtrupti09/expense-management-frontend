@@ -7,7 +7,7 @@ const store = configureStore({
   reducer: {
     expenses: expensesReducer,
   },
-//   middleware: [thunk],
+  // middleware: [thunk],
 });
 
 export default store;

@@ -30,12 +30,13 @@ const ExpenseItem = ({ expense, categories = [] }) => {
     await axios.delete(`http://localhost:5000/api/expenses/${expense.id}`);
     dispatch(fetchExpenses());
   };
-
+  
   const handleEdit = async () => {
     await axios.put(`http://localhost:5000/api/expenses/${expense.id}`, formData);
     setIsEditing(false);
     dispatch(fetchExpenses());
   };
+  
 
   return (
     <>
@@ -49,13 +50,13 @@ const ExpenseItem = ({ expense, categories = [] }) => {
           <div className="space-x-5">
             <button
               onClick={() => setIsEditing(true)}
-              className="bg-purple-700 text-white px-6 py-2 rounded-full gap-5"
+              className="bg-purple-700 text-white px-6 py-2 rounded-lg gap-5"
             >
               Edit
             </button>
             <button
               onClick={handleDelete}
-              className="bg-red-600 text-white px-4 py-2 rounded-full"
+              className="bg-red-600 text-white px-4 py-2 rounded-lg"
             >
               Delete
             </button>
